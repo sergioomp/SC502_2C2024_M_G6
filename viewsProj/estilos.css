@@ -1,0 +1,120 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #36a079;
+  color: #9e6161;
+  width: 100%;
+  box-sizing: border-box;
+}
+.navbar {
+  width: 100%;
+  background-color: blue;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  justify-content: space-between;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.content {
+  margin-top: 20px;
+}
+.patrocinadores {
+  color: black;
+}
+.nav-button {
+  float: right; 
+  color: rgb(198, 230, 84); 
+  padding: 4px 20px;
+  overflow: hidden;
+  border-radius: 5px;
+  justify-content: right;
+}
+.nav-link {
+  float: right; 
+  color: rgb(0, 0, 0); 
+  padding: 4px 20px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.nav-item:hover {
+  background-color: #a47fb9;
+}
+.formulario {
+  width: 300px;
+  margin: auto;
+}
+#toggleButton {
+  cursor: pointer;
+}
+#loginOptions {
+  display: none;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.formulario {
+  flex: 2;
+}
+aside {
+  flex: 1;
+  margin-left: 20px;
+}
+.producto {
+  background-color: #f1cb1d;
+  border: 5px outset;
+  border-radius: 25px;
+  padding: 4px;
+  margin: 33px;
+  text-align: center;
+  width: 160px;
+  transition: transform 0.5s;
+}
+.producto:hover {
+  transform: scale(1.06);
+}
+.imgProducto img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+.nombreProducto {
+  font-size: 23px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  display: flex;
+}
+.cantidad {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cantidad label {
+  flex-grow: 1;
+  text-align: left;
+  margin-right: 15px;
+}
+.cantidad input {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+}
+.boton {
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 8px 8px;
+  margin-right: 15px;
+  margin-left: 200;
+  font-size: 14px;
+  border-radius: 18px;
+}
