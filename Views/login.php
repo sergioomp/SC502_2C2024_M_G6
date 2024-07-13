@@ -16,7 +16,7 @@
     <section id="myForm" class="mt-3">
         <h1 class="text-center">Log-in</h1>
         <div class="formulario">
-            <form id="miformulario" action="./recibe.html">
+            <form id="miformulario" action="./recibe.html" method="POST">
                 <div class="mb-3">
                     <label for="nombreUsuario" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombreUsuario" name= "nombre" placeholder="">
@@ -31,17 +31,15 @@
                   </div>
                   
                   <div class="mb-3">
-                    <label class="form-label">Tipo de Usuario</label>
                     <div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tipoUsuario" id="voluntarios" value="voluntarios">
-                            <label class="form-check-label" for="voluntarios">Voluntarios</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tipoUsuario" id="patrocinadores" value="patrocinadores">
-                            <label class="form-check-label" for="patrocinadores">Patrocinadores/Afiliados</label>
-                        </div>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Tipo de Usuario</option>
+                            <option value="0">Voluntario</option>
+                            <option value="1">Patrocinador/Afiliado</option>
+                            
+                          </select>
                     </div>
+                    <br>
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-success"> registrarse</button>
