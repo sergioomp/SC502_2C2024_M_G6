@@ -26,6 +26,10 @@
                     <input type="text" class="form-control" id="nombreUsuario" rows="1" name="Usuario"></input>
                   </div>
                   <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="text" class="form-control" id="correo" rows="1" name="correo"></input>
+                  </div>
+                  <div class="mb-3">
                     <label for="passwordUsuario" class="form-label">password</label>
                     <input type="password" class="form-control" id="passwordUsuario" rows="1" name="Usuario"></input>
                   </div>
