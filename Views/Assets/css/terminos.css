@@ -1,3 +1,13 @@
+body {
+    background-color: #f8f9fa;
+    color: #343a40;
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Finformacionlogistica.com%2Fpueden-no-entregarme-un-envio-si-me-niego-a-ensenar-el-dni%2F&psig=AOvVaw2j0tjjYoUslH0Dg2QwmXV8&ust=1721273460227000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOiGq8aRrYcDFQAAAAAdAAAAABAE');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
 header {
     margin-bottom: 20px;
 }
@@ -15,7 +25,7 @@ header {
 }
 
 .nav-link:hover {
-    color: #ffffff;
+    color: #ffffff ;
 }
 
 .nav-button a {
@@ -81,36 +91,3 @@ footer p {
 .form-group {
     margin-bottom: 15px;
 }
-
-
-        
-        .card {
-            background-image: url('https://tbm-media.s3.amazonaws.com/og_images/IMG_6209_crop_1200.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            height: 300px;
-        }
-
-        .card-body {
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100%;
-        }
-
-        .card-1 {
-            background-image: url('https://tbm-media.s3.amazonaws.com/og_images/IMG_6209_crop_1200.jpg');
-        }
-
-        .card-2 {
-            background-image: url('https://www.gannett-cdn.com/-mm-/148256208c5eca0e0fa2a8da2eaceef67d721a11/c=0-165-2993-1856/local/-/media/2018/01/17/Pensacola/Pensacola/636518005126914564-Helping-the-Homeless-001.jpg?width=3200&height=1680&fit=crop');
-        }
-
-        .card-3 {
-            background-image: url('https://media.npr.org/assets/img/2012/07/05/homeless-in-philadelphia-e35ede4faf4c36354378c34d4d696cecc25fbbfa-s1100-c50.jpg');
-        }
-
-        
