@@ -8,7 +8,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./Assets/css/Registros.css">
-    <title>Document</title>
+    <title>EcoEats</title>
 </head>
 <body>
     <header>
@@ -89,7 +89,7 @@
         <h3>Contactenos</h3>
         <span class="material-symbols-outlined">call support_agent</span>
         <hr>
-        <p>tel:8888-8888 correo: marcobruno@gmail.com</p>
+        <p>tel:8888-8888 correo: EcoEatsCorp@gmail.com</p>
     </footer>
 
     <script>js.js</script>

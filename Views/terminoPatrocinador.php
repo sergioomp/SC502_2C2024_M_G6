@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>EcoEats</title>
     <link rel="stylesheet" href="./Assets/css/terminos.css">
 </head>
 <body class="body" style="background-color: #f3e0bc;">
@@ -112,7 +112,7 @@
             call support_agent
         </span>
         <hr>
-        <p>tel:8888-8888 correo: marcobruno@gmail.com</p>
+        <p>tel:8888-8888 correo: EcoEatsCorp@gmail.com</p>
     </footer>
 </body>
 <script src="./Assets/js/Terminos.js"></script>

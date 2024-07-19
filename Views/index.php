@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>EcoEats</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -15,9 +15,9 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav classs="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="./index">Logo</a>
+        <a class="navbar-brand" href="./index">EcoEats</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -46,26 +46,38 @@
 
   </header>
 
-  <!-- Jumbotron -->
-  <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
-    <h2>AlimentosSA</h2>
-    <p>
-      Somos un proyecto enfocado a la reduccion del desperdicio alimenticio
-    </p>
+  <h1>EcoEats</h1>
+  
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card card-1">
+                <div class="card-body">
+                    <h5 class="card-title">Registra tu restaurante</h5>
+                    <a href="patrocinadores.php" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-2">
+                <div class="card-body">
+                    <h5 class="card-title">Registrate como voluntario</h5>
+                    <a href="patrocinadores.html" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-3">
+                <div class="card-body">
+                    <h5 class="card-title">Ofertas</h5>
+                    <a href="patrocinadores.html" class="btn btn-primary">Ir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <hr/>
 
-    <p>
-      <h3>Ofertas alimenticias RELAMPAGO <span class="material-symbols-outlined">
-        bolt
-        </span></h3>
-    </p>
-    <button type="button" onclick="window.location.href='./ofertas.html'" data-mdb-ripple-init class="btn btn-warning">
-      Ofertas
-    </button>
-  </div>
-  <!-- Jumbotron -->
-   <HR></HR>
    <div>
     <h2>Impacto</h2>
     <p>estamos orgullosos de los cambios positivos que hemos logrado en la reducción del desperdicio de comida. Desde el lanzamiento de nuestra plataforma, hemos observado una disminución significativa en la cantidad de alimentos que terminan en la basura. Nuestra misión es conectar a los consumidores con ofertas relámpago de productos alimenticios que de otro modo podrían desperdiciarse, brindando beneficios tanto para los comercios como para los usuarios.</p>
@@ -95,9 +107,26 @@
         <li><strong>Comienza a Voluntariar:</strong> Una vez completada la orientación, estarás listo para empezar a hacer una diferencia positiva en tu comunidad.</li>
     </ol>
     
-    <p>Tu tiempo y esfuerzo pueden tener un impacto significativo. Únete a <strong>[Nombre de la Aplicación]</strong> como voluntario y ayúdanos a construir un futuro más sostenible y compasivo para todos. ¡Esperamos contar contigo!</p>
+    <p>Tu tiempo y esfuerzo pueden tener un impacto significativo. Únete a <strong>EcoEats</strong> como voluntario y ayúdanos a construir un futuro más sostenible para todos. ¡Esperamos contar contigo!</p>
 </section>
    </div>
+   <!-- Jumbotron -->
+  <div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
+    <h2>EcoEats</h2>
+    
+
+    <hr/>
+
+    <p>
+      <h3>Ofertas alimenticias RELAMPAGO <span class="material-symbols-outlined">
+        bolt
+        </span></h3>
+    </p>
+    <button type="button" onclick="window.location.href='./ofertas.html'" data-mdb-ripple-init class="btn btn-warning" justify-content: center>
+      Ofertas
+    </button>
+  </div>
+  <!-- Jumbotron -->
 
   <footer>
     <h3>Contactenos</h3>
@@ -105,8 +134,9 @@
       call support_agent
     </span>
     <hr>
-    <p>tel:8888-8888 correo: marcobruno@gmail.com</p>
+    <p>tel:8888-8888 correo: EcoEatsCorp@gmail.com</p>
   </footer>
 </body>
 
-</html>
+</html>  
+    
