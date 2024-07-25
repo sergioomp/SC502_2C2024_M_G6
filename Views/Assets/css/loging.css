@@ -44,6 +44,11 @@ header {
     background-color: #218838;
 }
 
+h1 {
+    margin-top: 30px;
+    font-size: 44px;
+}
+
 .form-label {
     margin-top: 10px;
     font-size: 14px;
@@ -84,7 +89,7 @@ footer p {
     margin: 0;
 }
 
-.form-container {
+.formulario {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
@@ -93,6 +98,6 @@ footer p {
     margin: 30px auto;
 }
 
-.form-group {
+.mb-3 {
     margin-bottom: 15px;
 }

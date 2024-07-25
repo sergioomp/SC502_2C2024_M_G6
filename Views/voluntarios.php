@@ -86,11 +86,13 @@
             </div>
         </form>
     </div>
-    <footer>
-        <h3>Contáctenos</h3>
-        <span class="material-symbols-outlined">call support_agent</span>
+    <footer classs="footer">
+        <h3>Contactenos</h3>
+        <span class="material-symbols-outlined">
+            call support_agent
+        </span>
         <hr>
-        <p>Tel: 8888-8888 | Correo: marcobruno@gmail.com</p>
+        <p>tel:8888-8888 correo: EcoEatsCorp@gmail.com</p>
     </footer>
     <script>js.js</script>
     <script
