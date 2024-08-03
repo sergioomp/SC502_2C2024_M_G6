@@ -1,44 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Alimentos S.A</title>
     <meta charset="UTF-8">
-    <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoEats</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./Assets/css/Pagina3.css" rel="stylesheet">
 </head>
 
 <body>
+  <header>
+    <nav class="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./index">Logo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Voluntarios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Comercios afiliados</a>
+              </li>
+              <li class="nav-item">
+                <span>
+                  <a class="nav-button" href="#patrocinadores">Patrocinadores/afiliados</a>
+                </span>
+              </li>
+            </ul>
+  
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div>
+        <h1 style="text-align: center; color: rgb(53, 50, 50)">Alimentando comunidades, Reduciendo Desperdicio</h1>
+    </div>
+    <br>
+    <h1 style="text-align: center; color: rgb(53, 50, 50)"> <strong>¿Quiénes somos? </strong></h1>
+    <p style="text-align: center;">
+        En Alimentos S.A, nuestro equipo cree firmemente en el poder de la comunidad para marcar una
+        diferencia significativa en la vida de las personas que más lo necesitan. Estamos convencidos
+        de que, trabajando juntos, podemos generar un impacto positivo y duradero en nuestra sociedad.
+        Por ello, hemos diseñado nuestro sitio web con el propósito específico de facilitar la donación
+        de sobras de comida de restaurantes a personas que no tienen para comer. Esta iniciativa no solo
+        aborda el problema del desperdicio de alimentos, sino que también proporciona una solución efectiva
+        y compasiva para aquellos que se encuentran en situaciones de necesidad.
+        
+        Nuestro sitio web actúa como un puente entre los restaurantes que tienen comida en exceso y las
+        personas que carecen de acceso a alimentos. De esta manera, contribuimos a reducir el desperdicio
+        de comida, un problema cada vez más preocupante en nuestra sociedad actual. Al mismo tiempo,
+        ofrecemos un alivio tangible y necesario a aquellos que más ayuda necesitan, asegurando que las
+        sobras de comida, que de otro modo se desperdiciarían, lleguen a quienes realmente las valoran.</p>
 
-
-    <h1 style="text-align: center;background-color: #009999; color: white">¿Quiénes somos?</h1>
-    <p style="text-align: center;">En Alimentos S.A, nuestro equipo cree en el poder de la comunidad
-        para marcar una diferencia en la vida de las personas que mas lo necesitan. Nuestro sitio web
-        tiene como funcion facilitar la donacion de sobras de comida de restaurantes a personas que no 
-        tienen para comer, de esta forma reduciendo el desperdicio de comida y al mismo tiempo ayudando
-        a los que mas ayuda necesitan. </p>
-
-    <h1 style="text-align: center;background-color: #009999; color: white">Nuestra Misión</h1>
-    <p>
-        Nuestra misión en Alimentos S.A es combatir el hambre y el desperdicio de alimentos al mismo tiempo
-        y de manera eficiente mediante la creacion de una plataforma accesible para la donacion de sobrantes
-        de comida de restaurantes que normalmente desecharian dichos alimentos.
+    <h1 style="text-align: center; color: rgb(53, 50, 50)"><strong>Nuestra Misión</strong></h1>
+    <p style="text-align: center;">
+        Nuestra misión en Alimentos S.A es abordar dos problemas presentes en nuestra sociedad: el hambre
+        y el desperdicio de alimentos. Nos hemos comprometido a encontrar una solución eficiente y efectiva
+        mediante la creación de una plataforma accesible. Esta plataforma facilita la donación de sobrantes
+        de comida de restaurantes, alimentos que de otro modo serían desperdiciados.
+        Entendemos que muchos restaurantes, a pesar de sus mejores esfuerzos, a menudo se enfrentan al desafío
+        de gestionar los excedentes de comida al final del día. Nuestra plataforma les proporciona una salida
+        responsable para estos alimentos, canalizándolos hacia las personas y organizaciones que más los necesitan.
+        Al hacerlo, no solo ayudamos a reducir el desperdicio de alimentos, sino que también aseguramos que estos
+        recursos vitales lleguen a aquellos que enfrentan inseguridad alimentaria.
 
     </p>
-    <h1 style="text-align: center;background-color: #009999; color: white">¿Cómo operamos?</h1>
-    <p>
+    <h1 style="text-align: center;color:rgb(53, 50, 50)"><strong>¿Cómo operamos?</strong></h1>
+    
+    <p >
         Nuestro modo de operación es sencillo:
     </p>
+    <div class="accordion" id="accordionExample" class="row mb-3">
+        <div class="accordion-item">
+          <h2 class="accordion-header" class="row mb-3">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Registro de Restaurantes Participantes</button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body" class="row mb-3">
+                Registra tu restaurante en nuestra plataforma y únete a la lucha contra el desperdicio de alimentos. Es fácil y rápido.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Alerta de Sobrantes de Comida</button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                Notifica tus sobrantes de comida en nuestro sitio web con unos simples clics. Ayuda a quienes más lo necesitan con un gesto rápido y efectivo.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Llerta Activa hasta su Selección</button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                Tu alerta permanecerá activa en nuestra plataforma hasta que otro usuario se comprometa a recoger los alimentos. Maximiza el impacto de tu donación.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Coordinación del Retiro de Alimentos</button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                Una vez seleccionada la alerta, compartiremos información de contacto con el usuario para coordinar el retiro de los alimentos.
+              </div>
+            </div>
+          </div>
+      </div>
+      
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card card-1">
+                    <div class="card-body">
+                        <h5 class="card-title">Registra tu restaurante</h5>
+                        <a href="patrocinadores.php" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card card-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Registrate como voluntario</h5>
+                        <a href="patrocinadores.html" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card card-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Ofertas</h5>
+                        <a href="patrocinadores.html" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <ul>
+    <footer classs="footer">
+      <h3>Contactenos</h3>
+      <span class="material-symbols-outlined">
+          call support_agent
+      </span>
+      <hr>
+      <p>tel:8888-8888 correo: EcoEatsCorp@gmail.com</p>
+  </footer>
+    
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-        <li style="font-family: sans-serif">Cualquier restaurante que desee participar puede registrarse en nuestro sitio web</li>
-        <li style="font-family: sans-serif">Cuando se tengan sobrantes de comida, pueden realizar la alerta en el sitio web</li>
-        <li style="font-family: sans-serif">La alerta permanece activa hasta que otro usuario la seleccione y retire la comida</li>
-
-    </ul>
-
-    <img src="https://tbm-media.s3.amazonaws.com/og_images/IMG_6209_crop_1200.jpg" alt="" width="750px" height="500px">
-
-    </section>
-    <footer>Derechos Reservados &COPY;Alimentos S.A 2024</footer>
-</body>
+</html>
