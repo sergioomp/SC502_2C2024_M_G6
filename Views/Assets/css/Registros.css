@@ -12,6 +12,8 @@ body {
     margin: 0;
 }
 
+
+
 header {
     margin-bottom: 20px;
 }
@@ -20,8 +22,9 @@ header {
     background-color: #198d84;
 }
 
-.navbar-brand, .nav-link {
-    color: #000000 ;
+.navbar-brand,
+.nav-link {
+    color: #000000;
 }
 
 .nav-link.active {
@@ -29,7 +32,7 @@ header {
 }
 
 .nav-link:hover {
-    color: #ffffff ;
+    color: #ffffff;
 }
 
 .nav-button a {
@@ -93,6 +96,40 @@ footer p {
     margin: 30px auto;
 }
 
+
+.terms-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 600px;
+    overflow-y: auto;
+    background-color: #f3e0bc;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1050; 
+}
+
+.terms-content h5,
+.terms-content h6 {
+    margin: 0;
+    padding: 10px 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15px;
 }
