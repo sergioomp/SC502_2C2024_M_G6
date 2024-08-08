@@ -48,14 +48,21 @@ header {
 }
 
 .form-label {
+    font-weight: bold;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+.form-select{
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .form-control {
     margin-bottom: 10px;
     padding: 8px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 button[type="submit"] {
@@ -64,6 +71,7 @@ button[type="submit"] {
     border: none;
     padding: 10px 20px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 button[type="submit"]:hover {
