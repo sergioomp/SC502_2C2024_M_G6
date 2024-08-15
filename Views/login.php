@@ -44,7 +44,7 @@
     <section id="myForm" class="mt-3">
         <h1 class="text-center">Log-in</h1>
         <div class="formulario">
-            <form id="miformulario" action="./recibe.html" method="POST">
+            <form id="miformulario" action="./recibe.html" method="POST" name="loginform">
                 <div class="mb-3">
                     <label for="nombreUsuario" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombreUsuario" name= "nombre" placeholder="">
@@ -58,6 +58,9 @@
                     <input type="text" class="form-control" id="correo" rows="1" name="correo"></input>
                   </div>
                   <div class="mb-3">
+                    <label for="passwordUsuario" class="form-label">password</label>
+                    <input type="password" class="form-control" id="passwordUsuario" rows="1" name="Usuario"></input>
+                  </div><div class="mb-3">
                     <label for="passwordUsuario" class="form-label">password</label>
                     <input type="password" class="form-control" id="passwordUsuario" rows="1" name="Usuario"></input>
                   </div>

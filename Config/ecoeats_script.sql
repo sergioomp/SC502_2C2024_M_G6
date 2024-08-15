@@ -7,9 +7,11 @@ USE ecoeats;
 CREATE TABLE Usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    telefono VARCHAR(15),
-    direccion VARCHAR(200)
+    usuario VARCHAR(100),
+    correo VARCHAR(100) UNIQUE,
+    password VARCHAR UNIQUE(15),
+    tipoUsuario INT,
+    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE Restaurantes (
