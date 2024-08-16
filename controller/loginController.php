@@ -1,31 +1,26 @@
 <?php
-    require_once'../models/loginModel.php';
+require_once '../models/loginModel.php';
 
-   
-$nombre = (isset($_POST["nombre"])) ? $_POST["nombre"] : "";
-$user = (isset($_POST["user$user"])) ? $_POST["user$user"] : "";
-$email =  (isset($_POST["email"])) ? $_POST["email"] : "";
-$password = (isset($_POST["password"])) ? $_POST["password"] : "";
-$tipoUser = (isset($_POST["tipoUser"])) ? $_POST['tipoUser'] : "";
+$nombre = isset($_POST["nombre"]) ? $_POST["nombre"] : "";
+$usuario = isset($_POST["usuario"]) ? $_POST["usuario"] : "";
+$email = isset($_POST["correo"]) ? $_POST["correo"] : "";
+$password = isset($_POST["password"]) ? $_POST["password"] : "";
+$tipoUser = isset($_POST["tipo_usuario"]) ? $_POST['tipo_usuario'] : "";
 
-$usuario = new LoginModel();
-$usuario->setNombre($nombre);
-$usuario->setUsuario($usuario);  
-$usuario->setCorreo($correo);   
-$usuario->setPassword($password); 
-$usuario->setTipoUser($tipoUser);  
+$usuarioModel = new LoginModel();
+$usuarioModel->setNombre($nombre);
+$usuarioModel->setUsuario($usuario);
+$usuarioModel->setCorreo($email);
+$usuarioModel->setPassword($password);
+$usuarioModel->setTipoUser($tipoUser);
 
 try {
-    $usuario ->guardar();
-    $resp = array("exito"=> true,"msg"=>"Se inserto correctamente");
-    echo json_encode($resp);
+    // Intentar guardar el usuario y retornar respuesta
+    $resultado = $usuarioModel->guardar();
+    echo json_encode($resultado); // Echo directamente el resultado de guardar(), que ya incluye éxito y mensaje
 } catch (\Throwable $th) {
-    $resp = array("exito"=> false,"msg"=>"Se presento un error");
+    // Manejo de errores con mensaje de excepción
+    $resp = array("exito" => false, "msg" => "Se presentó un error: " . $th->getMessage());
     echo json_encode($resp);
 }
-
-
-
-
-
 ?>

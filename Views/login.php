@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoginEcoEats</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./Assets/css/login.css">
+    <link rel="stylesheet" href="./Assets/css/Registros.css">
 </head>
 <body>
 <header>
-        <nav class="navbar"class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index">Logo</a>
                 <button class="navbar-toggler" type="button"
@@ -41,59 +40,55 @@
             </div>
         </nav>
     </header>
-    <section id="myForm" class="mt-3">
+<section id="myForm" class="mt-3">
+    <div class="formulario">
         <h1 class="text-center">Log-in</h1>
-        <div class="formulario">
-            <form id="miformulario" action="./recibe.html" method="POST" name="loginform">
-                <div class="mb-3">
-                    <label for="nombreUsuario" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombreUsuario" name= "nombre" placeholder="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="nombreUsuario" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="nombreUsuario" rows="1" name="Usuario"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="correo" class="form-label">Correo</label>
-                    <input type="text" class="form-control" id="correo" rows="1" name="correo"></input>
-                  </div>
-                  <div class="mb-3">
-                    <label for="passwordUsuario" class="form-label">password</label>
-                    <input type="password" class="form-control" id="passwordUsuario" rows="1" name="Usuario"></input>
-                  </div><div class="mb-3">
-                    <label for="passwordUsuario" class="form-label">password</label>
-                    <input type="password" class="form-control" id="passwordUsuario" rows="1" name="Usuario"></input>
-                  </div>
-                  
-                  <div class="mb-3">
-                    <div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Tipo de Usuario</option>
-                            <option value="0">Voluntario</option>
-                            <option value="1">Patrocinador/Afiliado</option>
-                            
-                          </select>
-                    </div>
-                    <br>
+        <form id="miformulario" action="../controller/loginController.php" method="POST" name="loginform">
+            <div class="mb-3">
+                <label for="nombreUsuario" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreUsuario" name="nombre" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usuario" name="usuario">
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="correo" name="correo">
+            </div>
+            <div class="mb-3">
+                <label for="passwordUsuario" class="form-label">Password</label>
+                <input type="password" class="form-control" id="passwordUsuario" name="password">
+            </div>
+            <div class="mb-3">
+                <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
+                <select class="form-select" id="tipo_usuario" name="tipo_usuario">
+                    <option value="" selected>Seleccionar tipo</option>
+                    <option value="0">Usuario</option>
+                    <option value="1">Voluntario</option>
+                    <option value="2">Patrocinador/Afiliado</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Registrarse</button>
+            </div>
+        </form>
+    </div>
+</section>
+<br>
+<hr>
+<footer class="footer">
+    <h3>Contáctenos</h3>
+    <span class="material-symbols-outlined">
+        call support_agent
+    </span>
+    <hr>
+    <p>Tel: 8888-8888 | Correo: EcoEatsCorp@gmail.com</p>
+</footer>
 
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-success"> registrarse</button>
-                    </div>
-                    
-            </form>
-        </div>
-    </section>
-    <br>
-    <br>
-    <hr>
-    <hr>
-    <footer classs="footer">
-        <h3>Contactenos</h3>
-        <span class="material-symbols-outlined">
-            call support_agent
-        </span>
-        <hr>
-        <p>tel:8888-8888 correo: EcoEatsCorp@gmail.com</p>
-    </footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="./Assets/js/login.js"></script>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
