@@ -1,5 +1,5 @@
 <?php
-require_once '../../../../config/Conexion.php';
+require_once '../../../../Config/Conexion.php';
 
 class Usuario extends Conexion
 {
@@ -7,77 +7,51 @@ class Usuario extends Conexion
     =            Atributos de la Clase            =
     =============================================*/
     protected static $cnx;
-    private $id = null;
-    private $email = null;
+    private $id_usuario = null;
+    private $id_rol = null;
     private $nombre = null;
-    private $clave = null;
-    private $imagen = null;
+    private $correo = null;
+    private $password = null;
+    private $ruta_imagen = null;
     private $telefono = null;
+    private $direccion = null;
     private $estado = null;
-    private $cambioContrasena = null;
+
     /*=====  End of Atributos de la Clase  ======*/
 
     /*=============================================
-    =            Contructores de la Clase         =
+    =            Constructores de la Clase          =
     =============================================*/
-    public function __construct() {}
-    /*=====  End of Contructores de la Clase  ======*/
+    public function __construct() {
+        parent::__construct(); // Asegúrate de llamar al constructor de la clase base si es necesario
+    }
+    /*=====  End of Constructores de la Clase  ======*/
 
     /*=============================================
     =            Encapsuladores de la Clase       =
     =============================================*/
-    public function getId() { 
-        return $this->id;
-     }
-    public function setId($id) {
-         $this->id = $id; 
-        }
-    public function getEmail() {
-         return $this->email;
-         }
-    public function setEmail($email) {
-         $this->email = $email;
-         }
-    public function getNombre() { 
-        return $this->nombre; 
-    }
-    public function setNombre($nombre) { 
-        $this->nombre = strtoupper($nombre);
-    }
-    public function getClave() { 
-        return $this->clave; 
-    }
-    public function setClave($clave) {
-        $this->clave = $clave;
-    }
-    public function getImagen() {
-         return $this->imagen;
-    }
-    public function setImagen($imagen) { 
-        $this->imagen = $imagen; 
-    }
-    public function getTelefono() { 
-        return $this->telefono; 
-    }
-    public function setTelefono($telefono) { 
-        $this->telefono = $telefono; 
-    }
-    public function getEstado() { 
-        return $this->estado; 
-    }
-    public function setEstado($estado) { 
-        $this->estado = $estado; 
-    }
-    public function getCambioContrasena() { 
-        return $this->cambioContrasena; 
-    }
-    public function setCambioContrasena($cambioContrasena) { 
-        $this->cambioContrasena = $cambioContrasena; 
-    }
+    public function getIdUsuario() { return $this->id_usuario; }
+    public function setIdUsuario($id_usuario) { $this->id_usuario = $id_usuario; }
+    public function getIdRol() { return $this->id_rol; }
+    public function setIdRol($id_rol) { $this->id_rol = $id_rol; }
+    public function getNombre() { return $this->nombre; }
+    public function setNombre($nombre) { $this->nombre = $nombre; }
+    public function getCorreo() { return $this->correo; }
+    public function setCorreo($correo) { $this->correo = $correo; }
+    public function getPassword() { return $this->password; }
+    public function setPassword($password) { $this->password = $password; }
+    public function getRutaImagen() { return $this->ruta_imagen; }
+    public function setRutaImagen($ruta_imagen) { $this->ruta_imagen = $ruta_imagen; }
+    public function getTelefono() { return $this->telefono; }
+    public function setTelefono($telefono) { $this->telefono = $telefono; }
+    public function getDireccion() { return $this->direccion; }
+    public function setDireccion($direccion) { $this->direccion = $direccion; }
+    public function getEstado() { return $this->estado; }
+    public function setEstado($estado) { $this->estado = $estado; }
     /*=====  End of Encapsuladores de la Clase  ======*/
 
     /*=============================================
-    =            Metodos de la Clase              =
+    =            Métodos de la Clase              =
     =============================================*/
     public static function getConexion() {
         self::$cnx = Conexion::conectar();
@@ -88,198 +62,95 @@ class Usuario extends Conexion
     }
 
     public function listarTodosDb() {
-        $query = "SELECT * FROM usuario";
-        $usuarios = [];
-
+        $query = "SELECT * FROM Usuario";
         try {
             self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->execute();
-
-            foreach ($resultado->fetchAll() as $encontrado) {
-                $user = new Usuario();
-                $user->setId($encontrado['id']);
-                $user->setEmail($encontrado['email']);
-                $user->setNombre($encontrado['nombre']);
-                $user->setImagen($encontrado['imagen']);
-                $user->setTelefono($encontrado['telefono']);
-                $user->setEstado($encontrado['estado']);
-                $usuarios[] = $user;
-            }
-        } catch (PDOException $e) {
-            return json_encode("Error {$e->getCode()}: {$e->getMessage()}");
-        } finally {
+            $resultado = self::$cnx->query($query);
+            $usuarios = $resultado->fetchAll(PDO::FETCH_ASSOC);
             self::desconectar();
+            return json_encode($usuarios);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+            return json_encode($error);
         }
-
-        return $usuarios;
     }
 
-    public function verificarExistenciaDb() {
-        $query = "SELECT * FROM usuario WHERE email = :email";
-        $encontrado = false;
-
+    public function verificarExistenciaDb($correo) {
+        $query = "SELECT COUNT(*) FROM Usuario WHERE correo = :correo";
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":email", $this->getEmail(), PDO::PARAM_STR);
+            $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
             $resultado->execute();
-
-            $encontrado = $resultado->rowCount() > 0;
-        } catch (PDOException $e) {
-            return "Error {$e->getCode()}: {$e->getMessage()}";
-        } finally {
+            $existe = $resultado->fetchColumn();
             self::desconectar();
+            return $existe > 0 ? json_encode(true) : json_encode(false);
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+            return json_encode($error);
         }
-
-        return $encontrado;
     }
 
     public function guardarEnDb() {
-        $query = "INSERT INTO usuario (email, nombre, clave, imagen, telefono, estado, cambioContrasena, created_at) 
-                  VALUES (:email, :nombre, :clave, :imagen, :telefono, :estado, :cambioContrasena, NOW())";
-
+        $query = "INSERT INTO Usuario (nombre, correo, telefono, direccion, password, id_rol, ruta_imagen) VALUES (:nombre, :correo, :telefono, :direccion, :password, :id_rol, :ruta_imagen)";
         try {
             self::getConexion();
+            $nombre = strtoupper($this->getNombre());
+            $correo = $this->getCorreo();
+            $telefono = $this->getTelefono();
+            $direccion = $this->getDireccion();
+            $password = $this->getPassword();
+            $id_rol = $this->getIdRol();
+            $ruta_imagen = $this->getRutaImagen();
+
             $resultado = self::$cnx->prepare($query);
-
-            $resultado->bindParam(":email", $this->getEmail(), PDO::PARAM_STR);
-            $resultado->bindParam(":nombre", $this->getNombre(), PDO::PARAM_STR);
-            $resultado->bindParam(":clave", $this->getClave(), PDO::PARAM_STR);
-            $resultado->bindParam(":imagen", $this->getImagen(), PDO::PARAM_STR);
-            $resultado->bindParam(":telefono", $this->getTelefono(), PDO::PARAM_STR);
-            $resultado->bindParam(":estado", $this->getEstado(), PDO::PARAM_INT);
-            $resultado->bindParam(":cambioContrasena", $this->getCambioContrasena(), PDO::PARAM_INT);
-
+            $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+            $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
+            $resultado->bindParam(":telefono", $telefono, PDO::PARAM_STR);
+            $resultado->bindParam(":direccion", $direccion, PDO::PARAM_STR);
+            $resultado->bindParam(":password", $password, PDO::PARAM_STR);
+            $resultado->bindParam(":id_rol", $id_rol, PDO::PARAM_INT);
+            $resultado->bindParam(":ruta_imagen", $ruta_imagen, PDO::PARAM_STR);
             $resultado->execute();
-        } catch (PDOException $e) {
-            return json_encode("Error {$e->getCode()}: {$e->getMessage()}");
-        } finally {
             self::desconectar();
+            return true;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+            return json_encode($error);
         }
     }
 
-    public function activar() {
-        $query = "UPDATE usuario SET estado = 1 WHERE id = :id";
-
+    public function editar() {
+        $query = "UPDATE Usuario SET nombre = :nombre, correo = :correo, telefono = :telefono, direccion = :direccion, ruta_imagen = :ruta_imagen, id_rol = :id_rol WHERE id_usuario = :id";
         try {
             self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":id", $this->getId(), PDO::PARAM_INT);
-            self::$cnx->beginTransaction();
-            $resultado->execute();
-            self::$cnx->commit();
+            $id = $this->getIdUsuario();
+            $nombre = strtoupper($this->getNombre());
+            $correo = $this->getCorreo();
+            $telefono = $this->getTelefono();
+            $direccion = $this->getDireccion();
+            $ruta_imagen = $this->getRutaImagen();
+            $id_rol = $this->getIdRol();
 
-            return $resultado->rowCount();
-        } catch (PDOException $e) {
-            self::$cnx->rollBack();
-            return "Error {$e->getCode()}: {$e->getMessage()}";
-        } finally {
-            self::desconectar();
-        }
-    }
-
-    public function desactivar() {
-        $query = "UPDATE usuario SET estado = 0 WHERE id = :id";
-
-        try {
-            self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":id", $this->getId(), PDO::PARAM_INT);
-            self::$cnx->beginTransaction();
-            $resultado->execute();
-            self::$cnx->commit();
-
-            return $resultado->rowCount();
-        } catch (PDOException $e) {
-            self::$cnx->rollBack();
-            return "Error {$e->getCode()}: {$e->getMessage()}";
-        } finally {
-            self::desconectar();
-        }
-    }
-
-    public static function mostrar($correo) {
-        $query = "SELECT * FROM usuario WHERE email = :email";
-
-        try {
-            self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":email", $correo, PDO::PARAM_STR);
-            $resultado->execute();
-
-            return $resultado->fetch();
-        } catch (PDOException $e) {
-            return "Error {$e->getCode()}: {$e->getMessage()}";
-        } finally {
-            self::desconectar();
-        }
-    }
-
-    public function llenarCampos($id) {
-        $query = "SELECT * FROM usuario WHERE id = :id";
-
-        try {
-            self::getConexion();
             $resultado = self::$cnx->prepare($query);
             $resultado->bindParam(":id", $id, PDO::PARAM_INT);
+            $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+            $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
+            $resultado->bindParam(":telefono", $telefono, PDO::PARAM_STR);
+            $resultado->bindParam(":direccion", $direccion, PDO::PARAM_STR);
+            $resultado->bindParam(":ruta_imagen", $ruta_imagen, PDO::PARAM_STR);
+            $resultado->bindParam(":id_rol", $id_rol, PDO::PARAM_INT);
             $resultado->execute();
-
-            $encontrado = $resultado->fetch();
-            if ($encontrado) {
-                $this->setId($encontrado['id']);
-                $this->setNombre($encontrado['nombre']);
-                $this->setEstado($encontrado['estado']);
-            }
-        } catch (PDOException $e) {
-            return json_encode("Error {$e->getCode()}: {$e->getMessage()}");
-        } finally {
             self::desconectar();
+            return true;
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+            return json_encode($error);
         }
     }
-
-    public function actualizarUsuario() {
-        $query = "UPDATE usuario SET nombre = :nombre, telefono = :telefono 
-                  WHERE id = :id AND email = :email";
-
-        try {
-            self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-
-            $resultado->bindParam(":id", $this->getId(), PDO::PARAM_INT);
-            $resultado->bindParam(":email", $this->getEmail(), PDO::PARAM_STR);
-            $resultado->bindParam(":nombre", $this->getNombre(), PDO::PARAM_STR);
-            $resultado->bindParam(":telefono", $this->getTelefono(), PDO::PARAM_STR);
-
-            self::$cnx->beginTransaction();
-            $resultado->execute();
-            self::$cnx->commit();
-
-            return $resultado->rowCount();
-        } catch (PDOException $e) {
-            self::$cnx->rollBack();
-            return "Error {$e->getCode()}: {$e->getMessage()}";
-        } finally {
-            self::desconectar();
-        }
-    }
-
-    public function verificarExistenciaEmail() {
-        $query = "SELECT * FROM usuario WHERE email = :email";
-
-        try {
-            self::getConexion();
-            $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":email", $this->getEmail(), PDO::PARAM_STR);
-            $resultado->execute();
-
-            return $resultado->fetch();
-        } catch (PDOException $e) {
-            return "Error {$e->getCode()}: {$e->getMessage()}";
-        } finally {
-            self::desconectar();
-        }
-    }
-    /*=====  End of Metodos de la Clase  ======*/
 }
 ?>

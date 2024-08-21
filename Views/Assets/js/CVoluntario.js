@@ -1,9 +1,9 @@
 $(document).ready(function () {
     $('#formulario').on('submit', function (e) {
         e.preventDefault();
-        var formData = new FormData($('#formulario')[0])
+        var formData = new FormData($('#formulario')[0]);
         $.ajax({
-            url: '../controller/ControllerVoluntario.php',
+            url: '../controller/ControllerVoluntarios.php',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -12,9 +12,8 @@ $(document).ready(function () {
                 $('#response').html('<div class="alert alert-success">Denuncia enviada exitosamente!</div>');
             },
             error: function (err) {
-
                 $('#response').html('<div class="alert alert-danger">Error al denunciar.</div>');
             }
         });
-    })
+    });
 });

@@ -4,13 +4,26 @@ require_once '../Config/Conexion.php';
 class LoginModel extends Conexion
 {
     /*==Atributos de la Clase===*/
+    private $idUsuario = null;
     private $nombre = null;
-    private $usuario = null;
+    private $telefono = null;
+    private $direccion = null;
     private $correo = null;
     private $password = null;
-    private $tipoUser = null;
+    private $idRol = null;
+    private $rutaImagen = null;
 
     /*==Encapsuladores de la Clase===*/
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
+
+    public function setIdUsuario($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+    }
+
     public function getNombre()
     {
         return $this->nombre;
@@ -21,14 +34,24 @@ class LoginModel extends Conexion
         $this->nombre = $nombre;
     }
 
-    public function getUsuario()
+    public function getTelefono()
     {
-        return $this->usuario;
+        return $this->telefono;
     }
 
-    public function setUsuario($usuario)
+    public function setTelefono($telefono)
     {
-        $this->usuario = $usuario;
+        $this->telefono = $telefono;
+    }
+
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
     }
 
     public function getCorreo()
@@ -51,14 +74,24 @@ class LoginModel extends Conexion
         $this->password = $password;
     }
 
-    public function getTipoUser()
+    public function getIdRol()
     {
-        return $this->tipoUser;
+        return $this->idRol;
     }
 
-    public function setTipoUser($tipoUser)
+    public function setIdRol($idRol)
     {
-        $this->tipoUser = $tipoUser;
+        $this->idRol = $idRol;
+    }
+
+    public function getRutaImagen()
+    {
+        return $this->rutaImagen;
+    }
+
+    public function setRutaImagen($rutaImagen)
+    {
+        $this->rutaImagen = $rutaImagen;
     }
 
     /*=============================================
@@ -87,11 +120,14 @@ class LoginModel extends Conexion
 
             foreach ($res->fetchAll() as $lista) {
                 $user = new LoginModel();
+                $user->setIdUsuario($lista['id_usuario']);
                 $user->setNombre($lista['nombre']);
-                $user->setUsuario($lista['usuario']);
+                $user->setTelefono($lista['telefono']);
+                $user->setDireccion($lista['direccion']);
                 $user->setCorreo($lista['correo']);
                 $user->setPassword($lista['password']);
-                $user->setTipoUser($lista['tipoUsuario']);
+                $user->setIdRol($lista['id_rol']);
+                $user->setRutaImagen($lista['ruta_imagen']);
                 $listaUsuarios[] = $user;
             }
             $this->desconectar($cn);
@@ -105,35 +141,41 @@ class LoginModel extends Conexion
     }
 
     public function guardar()
-    {
-        $query = "INSERT INTO Usuario (nombre, usuario, correo, password, tipoUsuario, created_at) 
-              VALUES (:nombre, :usuario, :correo, :password, :tipoUsuario, now())";
+{
+    $query = "INSERT INTO Usuario (nombre, usuario, correo, password, telefono, direccion, ruta_imagen, id_rol, created_at) 
+              VALUES (:nombre, :usuario, :correo, :password, :telefono, :direccion, :ruta_imagen, :id_rol, now())";
 
-        try {
-            $cn = $this->getConexion();
+    try {
+        $cn = $this->getConexion();
 
-            $nombre = strtoupper($this->getNombre());
-            $usuario = $this->getUsuario();
-            $correo = $this->getCorreo();
-            $password = password_hash($this->getPassword(), PASSWORD_BCRYPT); // Encriptar la contraseña
-            $tipoUser = $this->getTipoUser();
+        $nombre = strtoupper($this->getNombre());
+        $usuario = $this->getUsuario();
+        $correo = $this->getCorreo();
+        $password = password_hash($this->getPassword(), PASSWORD_BCRYPT); // Encriptar la contraseña
+        $telefono = $this->getTelefono();
+        $direccion = $this->getDireccion();
+        $ruta_imagen = $this->getRutaImagen();
+        $id_rol = $this->getIdRol();
 
-            $resultado = $cn->prepare($query);
-            $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
-            $resultado->bindParam(":usuario", $usuario, PDO::PARAM_STR);
-            $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
-            $resultado->bindParam(":password", $password, PDO::PARAM_STR);
-            $resultado->bindParam(":tipoUsuario", $tipoUser, PDO::PARAM_INT);
+        $resultado = $cn->prepare($query);
+        $resultado->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+        $resultado->bindParam(":usuario", $usuario, PDO::PARAM_STR);
+        $resultado->bindParam(":correo", $correo, PDO::PARAM_STR);
+        $resultado->bindParam(":password", $password, PDO::PARAM_STR);
+        $resultado->bindParam(":telefono", $telefono, PDO::PARAM_STR);
+        $resultado->bindParam(":direccion", $direccion, PDO::PARAM_STR);
+        $resultado->bindParam(":ruta_imagen", $ruta_imagen, PDO::PARAM_STR);
+        $resultado->bindParam(":id_rol", $id_rol, PDO::PARAM_INT);
 
-            $resultado->execute();
-            $this->desconectar($cn);
-            return array("exito" => true, "msg" => "Usuario guardado exitosamente.");
+        $resultado->execute();
+        $this->desconectar($cn);
+        return array("exito" => true, "msg" => "Usuario guardado exitosamente.");
 
-        } catch (PDOException $Exception) {
-            $this->desconectar($cn);
-            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            return array("exito" => false, "msg" => $error);
-        }
+    } catch (PDOException $Exception) {
+        $this->desconectar($cn);
+        $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+        return array("exito" => false, "msg" => $error);
     }
+}
 }
 ?>

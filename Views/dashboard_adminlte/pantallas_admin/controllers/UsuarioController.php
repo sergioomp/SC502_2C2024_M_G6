@@ -1,139 +1,132 @@
 <?php
-    require_once '../models/Usuario.php';
-    switch ($_GET["op"]) {
-        case 'listar_para_tabla':
-            $user_login = new Usuario();
-            $usuario = $user_login->listarTodosDb();
-            $data = array();
-            foreach ($usuario as $reg) {
-              //  $modulos_activos = '<ul>';
-              // $modulos_activos.= '</ul>';
-              if ($reg->getImagen()!= '' && $reg->getImagen() != null) {
-                $imagen='./assets/images/profiles/'.$reg->getImagen();
-            }else{
-                $imagen='./assets/images/profiles/'.'user-160x160.jpg';
-            }
-                $data[] = array(
-                    "0" => $reg->getId(),
-                    "1" => $reg->getEmail(),
-                    "2" => $reg->getNombre(),
-                    "3" => '<img src="'. $imagen.'" width="50px" heigth="50px"/>',
-                    "4" => $reg->getTelefono(),   
-                    "5" => ($reg->getEstado()==1)?'<span class="label bg-success"> Activado </span>':'<span class="label bg-danger"> Desactivado </span>',
-                    "6" => ($reg->getEstado())?'<button class="btn btn-warning" id="modificarUsuario">Modificar</button> '.
-                        '<button class="btn btn-danger" onclick="desactivar(\''.$reg->getId().'\')">Desactivar</button>': '</button> <button class="btn btn-warning" id="modificarUsuario">Modificar</button> '.
-                        '<button class="btn btn-success" onclick="activar(\''.$reg->getId().'\')">Activar</button> '
-                );
-            }
-            $resultados = array(
-                "sEcho" => 1, ##informacion para datatables
-                "iTotalRecords" =>count($data), ## total de registros al datatable
-                "iTotalDisplayRecords" => count($data), ## enviamos el total de registros a visualizar
-                "aaData" => $data
+require_once '../models/Usuario.php';
+
+switch ($_GET["op"]) {
+    case 'listar_para_tabla':
+        $user_login = new Usuario();
+        $usuariosJson = $user_login->listarTodosDb();
+
+        // Decodificar el JSON devuelto por el modelo
+        $usuarios = json_decode($usuariosJson, true);
+
+        // Verificar si se produjo un error o si no se devolvieron datos válidos
+        if (!is_array($usuarios)) {
+            echo json_encode(array("sEcho" => 1, "iTotalRecords" => 0, "iTotalDisplayRecords" => 0, "aaData" => array()));
+            exit;
+        }
+
+        $data = array();
+        foreach ($usuarios as $reg) {
+            $imagen = './assets/images/profiles/' . (!empty($reg['ruta_imagen']) ? $reg['ruta_imagen'] : 'user-160x160.jpg');
+            $estado = isset($reg['estado']) ? ($reg['estado'] == 1 ? '<span class="label bg-success"> Activado </span>' : '<span class="label bg-danger"> Desactivado </span>') : '<span class="label bg-warning"> No Definido </span>';
+            $data[] = array(
+                "0" => $reg['id_usuario'],
+                "1" => $reg['nombre'],
+                "2" => $reg['telefono'],
+                "3" => $reg['direccion'],
+                "4" => $reg['correo'],
+                "5" => $reg['id_rol'], // Suponiendo que tienes un campo para el rol
+                "6" => '<img src="' . $imagen . '" width="50px" height="50px"/>',
+                "7" => $estado,
+                "8" => '<button class="btn btn-warning btn-sm" id="modificarUsuario" data-id="' . $reg['id_usuario'] . '">Modificar</button>'
             );
-            echo json_encode($resultados);
+        }
+
+        $resultados = array(
+            "sEcho" => 1, // Información para DataTables
+            "iTotalRecords" => count($data), // Total de registros en DataTable
+            "iTotalDisplayRecords" => count($data), // Total de registros a visualizar
+            "aaData" => $data
+        );
+
+        echo json_encode($resultados);
         break;
-        case 'insertar':
-              $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-              $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
-              $imagen = isset($_POST["imagen"]) ? trim($_POST["imagen"]) : "";
-              $telefono = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : "";
-              $password = isset($_POST["password"]) ? trim($_POST["password"]) : "";
-              $estado = isset($_POST["estado"]) ? trim($_POST["estado"]) : 1;
-              //$clave=randomPassword();
-              $clavehash = hash('SHA256', trim($password));
-                  $usuario = new Usuario();
-                  $usuario->setEmail($email);
-                  $encontrado = $usuario->verificarExistenciaDb();
-                  if ($encontrado == false) {
-                      $usuario->setEmail($email);
-                      $usuario->setNombre($nombre);
-                      $usuario->setClave($clavehash);
-                      $usuario->setImagen($imagen);
-                      $usuario->setTelefono($telefono);
-                      $usuario->setEstado($estado);
-                      $usuario->setCambioContrasena(1);
-                      $usuario->guardarEnDb();
-                      if($usuario->verificarExistenciaDb()){
-                          //if(enviarCorreo($email,$clave,$nombre)){
-                              echo 1; //usuario registrado y envio de correo exitos
-                          //}else{
-                            //  echo 4; //usuario registrado y envio de correo fallido
-                          //}
-                      }else{
-                          echo 3; //Fallo al realizar el registro
-                      }
-                  } else {
-                      echo 2; //el usuario ya existe
-                  }
+
+    case 'insertar':
+        $email = isset($_REQUEST["correo"]) ? trim($_REQUEST["correo"]) : "";
+        $nombre = isset($_REQUEST["nombre"]) ? trim($_REQUEST["nombre"]) : "";
+        $imagen = isset($_REQUEST["ruta_imagen"]) ? trim($_REQUEST["ruta_imagen"]) : "";
+        $telefono = isset($_REQUEST["telefono"]) ? trim($_REQUEST["telefono"]) : "";
+        $password = isset($_REQUEST["password"]) ? trim($_REQUEST["password"]) : "";
+        $estado = isset($_REQUEST["estado"]) ? trim($_REQUEST["estado"]) : 1;
+        $id_rol = isset($_REQUEST["id_rol"]) ? trim($_REQUEST["id_rol"]) : 1; // Asegúrate de obtener el rol correctamente
+        $clavehash = password_hash($password, PASSWORD_BCRYPT); // Encriptar la contraseña
+
+        $usuario = new Usuario();
+        $usuario->setCorreo($email);
+        $usuarioExistente = json_decode($usuario->verificarExistenciaDb(), true);
+
+        if (!$usuarioExistente) {
+            $usuario->setNombre($nombre);
+            $usuario->setPassword($clavehash);
+            $usuario->setRutaImagen($imagen);
+            $usuario->setTelefono($telefono);
+            $usuario->setEstado($estado);
+            $usuario->setIdRol($id_rol);
+            $resultado = $usuario->guardarEnDb();
+            echo $resultado ? 1 : 3; // 1: Éxito, 3: Error
+        } else {
+            echo 2; // Usuario ya existe
+        }
         break;
-        case 'existeUsuario':
-            $usuario = isset($_POST["user"]) ? $_POST["user"] : "";
-            $user_login = new Usuario();
-            $user_login->setUsuario($usuario);
-            $encontrado = $user_login->verificarExistenciaDb();
-            if ($encontrado != null) {
-                echo 1;
-            }else{
-                echo 0;
-            }
+
+    case 'existeUsuario':
+        $usuario = isset($_REQUEST["user"]) ? $_REQUEST["user"] : "";
+        $user_login = new Usuario();
+        $user_login->setCorreo($usuario);
+        $usuarioExistente = json_decode($user_login->verificarExistenciaDb(), true);
+        echo $usuarioExistente ? 1 : 0;
         break;
-        case 'activar':
-            $ul = new Usuario();
-            $ul->setId(trim($_POST['idUser']));
-            $rspta = $ul->activar();
-            echo $rspta;
+
+    case 'activar':
+        $usuario = new Usuario();
+        $usuario->setIdUsuario(trim($_REQUEST['idUser']));
+        echo $usuario->activar() ? 1 : 0; // 1: Activado, 0: Error
         break;
-        case 'desactivar':
-            $ul = new Usuario();
-            $ul->setId(trim($_POST['idUser']));
-            $rspta = $ul->desactivar();
-            echo $rspta;
+
+    case 'desactivar':
+        $usuario = new Usuario();
+        $usuario->setIdUsuario(trim($_REQUEST['idUser']));
+        echo $usuario->desactivar() ? 1 : 0; // 1: Desactivado, 0: Error
         break;
-        case 'mostrar':
-            $usuario = isset($_POST["user"]) ? $_POST["user"] : "";
-            $user = new Usuario();
-            $user->setUsuario($usuario);
-            $encontrado = $user->mostrar($usuario);
-            if ($encontrado != null) {
-                $arr = Array();
-                $arr[] = [
-                    "usuario" => $encontrado->getUsuario(),
-                    "nombre" => $encontrado->getNombre(),
-                    "correo" => $encontrado->getCorreo()
-                ];
-    
-                echo json_encode($arr);
-            }else{
-                echo 0;
-            }
+
+    case 'mostrar':
+        $usuario = isset($_REQUEST["user"]) ? $_REQUEST["user"] : "";
+        $user = new Usuario();
+        $user->setCorreo($usuario);
+        $encontrado = $user->mostrar();
+        if ($encontrado) {
+            $arr = array(
+                "usuario" => $encontrado['correo'],
+                "nombre" => $encontrado['nombre'],
+                "telefono" => $encontrado['telefono'],
+                "direccion" => $encontrado['direccion'],
+                "ruta_imagen" => $encontrado['ruta_imagen'],
+                "id_rol" => $encontrado['id_rol'] // Suponiendo que tienes un campo para el rol
+            );
+            echo json_encode($arr);
+        } else {
+            echo 0; // Usuario no encontrado
+        }
         break;
-        case 'editar':
-              $id = isset($_POST["id"]) ? trim($_POST["id"]) : "";
-              $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-              $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
-              $image = isset($_POST["imagen"]) ? trim($_POST["imagen"]) : "";
-              $telefono = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : "";
-              $usuario = new usuario();
-              $usuario->setEmail($email);
-              $encontrado = $usuario->verificarExistenciaDb();
-              if ($encontrado == 1) {
-                $usuario->llenarCampos($id);
-                //$modulo->setNombre($nombreModif);
-              $usuario->setId($id);
-              $usuario->setEmail($email);
-              $usuario->setNombre($nombre);
-              $usuario->setImagen($image);
-              $usuario->setTelefono($telefono);
-                $modificados = $usuario->actualizarUsuario();
-                if ($modificados > 0) {
-                  echo 1;
-                } else {
-                  echo 0;
-                }
-              }else{
-                echo 2;	
-              }
+
+    case 'editar':
+        $id = isset($_REQUEST["id_usuario"]) ? trim($_REQUEST["id_usuario"]) : "";
+        $email = isset($_REQUEST["correo"]) ? trim($_REQUEST["correo"]) : "";
+        $nombre = isset($_REQUEST["nombre"]) ? trim($_REQUEST["nombre"]) : "";
+        $imagen = isset($_REQUEST["ruta_imagen"]) ? trim($_REQUEST["ruta_imagen"]) : "";
+        $telefono = isset($_REQUEST["telefono"]) ? trim($_REQUEST["telefono"]) : "";
+        $direccion = isset($_REQUEST["direccion"]) ? trim($_REQUEST["direccion"]) : ""; // Asegúrate de obtener todos los campos
+
+        $usuario = new Usuario();
+        $usuario->setIdUsuario($id);
+        $usuario->setCorreo($email);
+        $usuario->setNombre($nombre);
+        $usuario->setRutaImagen($imagen);
+        $usuario->setTelefono($telefono);
+        $usuario->setDireccion($direccion); // Campo nuevo
+        $modificados = $usuario->editar();
+        echo $modificados ? 1 : 0; // 1: Modificado, 0: Error
         break;
-      }
+}
 ?>

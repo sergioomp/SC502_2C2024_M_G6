@@ -10,52 +10,52 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="./Assets/css/from_registros.css">
     <link rel="stylesheet" href="./Assets/css/header.css">
-  <link rel="stylesheet" href="./Assets/css/footer.css">
+    <link rel="stylesheet" href="./Assets/css/footer.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-    <?php include './header.php'; ?>
+        <?php include './header.php'; ?>
     </header>
 
     <div class="form-container">
-        <form class="row g-3">
+        <form id="formulario" class="row g-3">
             <h1 class="text-center">Voluntario</h1>
             <div class="form-group col-md-6">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre">
             </div>
             <div class="form-group col-md-6">
                 <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido">
+                <input type="text" class="form-control" id="apellido" name="apellido">
             </div>
             <div class="form-group col-md-6">
                 <label for="email" class="form-label">Correo</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" name="correo">
             </div>
             <div class="form-group col-md-6">
                 <label for="telefono" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" placeholder="Teléfono">
+                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
             </div>
             <div class="form-group col-md-6">
                 <label for="transporte" class="form-label">Tipo de transporte</label>
-                <select id="transporte" class="form-select">
+                <select id="transporte" class="form-select" name="transporte">
                     <option selected>Carro</option>
                     <option>Moto</option>
                     <option>Camión</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="indentificador" class="form-label">Identificacion</label>
-                <input type="text" class="form-control" id="indentificador">
+                <label for="identificador" class="form-label">Identificación</label>
+                <input type="text" class="form-control" id="identificador" name="identificador">
             </div>
             <div class="form-group col-md-6">
                 <label for="canton" class="form-label">Cantón</label>
-                <input type="text" class="form-control" id="canton">
+                <input type="text" class="form-control" id="canton" name="canton">
             </div>
             <div class="form-group col-md-6">
                 <label for="contraseña" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña">
+                <input type="password" class="form-control" id="contraseña" name="contraseña">
             </div>
             <div class="form-group full-width col-12">
                 <button type="button" class="btn btn-primary" onclick="showTerms()">Registrar</button>
@@ -63,60 +63,11 @@
         </form>
     </div>
     
-
-    <div id="terms" class="terms-content">
+    <div id="terms" class="terms-content" style="display: none;">
         <span class="close-btn" onclick="closeTerms()">&times;</span>
         <h5>Gracias por visitar el Programa Voluntario de Asistencia Alimentaria. Usted reconoce y acepta los siguientes términos y condiciones al participar en este programa. Antes de continuar, lea atentamente este párrafo.</h5>
         <br>
-        <h5>Definiciones</h5>
-        <h6>
-            Voluntarios: Personas que ofrecen gratuitamente su tiempo y experiencia para ayudar al funcionamiento de los programas.<br>
-            Beneficiarios: Personas u organizaciones que reciben ayuda y servicios de los voluntarios.<br>
-            Organización: La entidad responsable de supervisar y gestionar el programa.
-        </h6>
-        <br>
-        <h5>Elegibilidad</h5>
-        <h6>
-            Los voluntarios pueden ser cualquier persona que desee ayudar a la causa, pero antes deben contar con la aprobación de la organización.<br>
-            Beneficiarios: Personas u organizaciones que la organización ha determinado que necesitan ayuda y apoyo.
-        </h6>
-        <br>
-        <h5>Las obligaciones de los voluntarios</h5>
-        <h6>
-            Cumplir sus deberes y obligaciones con diligencia y dedicación.<br>
-            Respetar las políticas y procedimientos establecidos por la Organización.<br>
-            No utilizar el programa para ganar dinero u obtener ventajas personales no aprobadas.
-        </h6>
-        <br>
-        <h5>Responsabilidades de la Organización</h5>
-        <h6>
-            Asignar el trabajo voluntario de forma justa y equitativa.<br>
-            Proporcionar la formación y el apoyo necesarios para que los voluntarios puedan llevar a cabo sus tareas de manera eficiente.<br>
-            Llevar un registro detallado de las acciones y contribuciones de los voluntarios.
-        </h6>
-        <br>
-        <h5>Obligaciones de los Beneficiarios</h5>
-        <h6>
-            Con el fin de determinar su elegibilidad, los Beneficiarios deben proporcionar información precisa y actualizada sobre sus circunstancias y necesidades.<br>
-            Utilizar la ayuda y los recursos únicamente en beneficio propio o de la comunidad.<br>
-            Colaborar con los voluntarios y mostrar respeto por su trabajo y esfuerzo.
-        </h6>
-        <br>
-        <h5>Restricciones a la rendición de cuentas</h5>
-        <h6>
-            En caso de daños directos, indirectos, incidentales, especiales o consecuentes de utilizar los servicios proporcionados a través del Programa, no serán responsables la Organización ni los voluntarios.
-        </h6>
-        <br>
-        <h5>Modificaciones de las condiciones de venta</h5>
-        <h6>
-            Estas condiciones están sujetas a cambios en cualquier momento por parte de la Organización. Cualquier cambio será comunicado a los voluntarios y beneficiarios con la antelación necesaria.
-        </h6>
-        <br>
-        <h5>Finalización del Programa</h5>
-        <h6>
-            El Programa podrá ser finalizado por la Organización en cualquier momento y por cualquier causa. Los voluntarios y beneficiarios serán informados tan pronto como sea posible en caso de terminación.
-        </h6>
-        <br>
+        <!-- Contenido de términos -->
         <div class="col-12 d-flex justify-content-center flex-column align-items-center">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="acceptTerms">
@@ -134,15 +85,12 @@
     <footer>
         <?php include './footer.php'; ?>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-
+    <!-- Incluir jQuery antes de tus scripts personalizados -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Tus scripts personalizados -->
     <script src="./Assets/js/CVoluntario.js"></script>
     <script src="./Assets/js/FromTerminos.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
