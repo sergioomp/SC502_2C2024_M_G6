@@ -1,11 +1,11 @@
 .footer {
-    background: linear-gradient(to bottom right, rgba(25, 141, 132, 0.8), rgba(105, 70, 133, 0.932)); /* Gradiente que se mantiene */
+    background: linear-gradient(to bottom right, rgba(25, 141, 132, 0.8), rgba(105, 70, 133, 0.932)); 
     color: white;
     padding: 20px 10px; 
     position: relative;
     overflow: hidden;
     border-top: none; 
-    box-shadow: none; /* Elimina la sombra del borde exterior */
+    box-shadow: none; 
 }
 
 .footer .container {
@@ -30,7 +30,7 @@
     flex: 1;
     min-width: 180px; 
     margin: 10px;
-    box-shadow: none; /* Sombra pequeña en las esquinas internas */
+    box-shadow: none; 
 }
 
 .footer-section:hover {
@@ -84,7 +84,7 @@
     margin: 0;
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
     .footer .row {
         text-align: center;

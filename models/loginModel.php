@@ -3,7 +3,7 @@ require_once '../Config/Conexion.php';
 
 class LoginModel extends Conexion
 {
-    /*==Atributos de la Clase===*/
+    
     private $idUsuario = null;
     private $nombre = null;
     private $telefono = null;
@@ -13,7 +13,7 @@ class LoginModel extends Conexion
     private $idRol = null;
     private $rutaImagen = null;
 
-    /*==Encapsuladores de la Clase===*/
+    
     public function getIdUsuario()
     {
         return $this->idUsuario;

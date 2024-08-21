@@ -40,7 +40,7 @@
   <!-- Jumbotron -->
         <h1 style="text-align: center;">Productos disponibles</h1>
             <section>
-            <!-- dataaa-->
+            
 
             
             </section>

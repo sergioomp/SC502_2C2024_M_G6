@@ -67,7 +67,7 @@
         <span class="close-btn" onclick="closeTerms()">&times;</span>
         <h5>Gracias por visitar el Programa Voluntario de Asistencia Alimentaria. Usted reconoce y acepta los siguientes términos y condiciones al participar en este programa. Antes de continuar, lea atentamente este párrafo.</h5>
         <br>
-        <!-- Contenido de términos -->
+        
         <div class="col-12 d-flex justify-content-center flex-column align-items-center">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="acceptTerms">
@@ -86,9 +86,9 @@
         <?php include './footer.php'; ?>
     </footer>
 
-    <!-- Incluir jQuery antes de tus scripts personalizados -->
+    
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- Tus scripts personalizados -->
+    
     <script src="./Assets/js/CVoluntario.js"></script>
     <script src="./Assets/js/FromTerminos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

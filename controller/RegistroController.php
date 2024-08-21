@@ -15,7 +15,7 @@ class RegistroController {
             $direccion = $_POST['direccion'];
             $correo = $_POST['correo'];
             $password = $_POST['password'];
-            $ruta_imagen = $_POST['ruta_imagen']; // Asegúrate de que este campo esté presente en tu formulario
+            $ruta_imagen = $_POST['ruta_imagen']; 
 
             if ($this->registro->correoExiste($correo)) {
                 echo "<script>alert('El correo electrónico ya está registrado.'); window.history.back();</script>";

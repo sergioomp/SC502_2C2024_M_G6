@@ -79,13 +79,13 @@ button[type="submit"]:hover {
 }
 
 .footer {
-    background: linear-gradient(to bottom right, rgba(214, 76, 207, 0.8), rgba(28, 7, 43, 0.8)); /* Gradiente desde la esquina superior izquierda a la esquina inferior derecha */
+    background: linear-gradient(to bottom right, rgba(214, 76, 207, 0.8), rgba(28, 7, 43, 0.8)); 
     color: white;
     padding: 20px 10px; 
     position: relative;
     overflow: hidden;
     border-top: none; 
-    box-shadow: none; /* Elimina la sombra del borde exterior */
+    box-shadow: none; 
 }
 
 footer h3 {

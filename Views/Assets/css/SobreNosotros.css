@@ -60,41 +60,40 @@ body {
 
 .accordion {
     background: linear-gradient(to bottom right, rgba(57, 179, 211, 0.8), rgba(181, 110, 173, 0.932)); 
-    color: white; /* Color del texto */
-    padding: 10px; /* Espaciado interno */
-    margin: 20px; /* Margen alrededor del acordeón */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: none; /* Elimina la sombra del borde exterior */
-    margin-left: 150px;  /* Margen a la izquierda */
-    margin-right: 150px; /* Margen a la derecha */
+    color: white; 
+    padding: 10px; 
+    margin: 20px; 
+    border-radius: 8px; 
+    box-shadow: none; 
+    margin-left: 150px; 
+    margin-right: 150px; 
 }
 
-/* Estilo para los botones del acordeón */
+
 .accordion-button {
     background-color: #0859a0; 
     color: #ffffff; 
     border: none; 
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno */
+    border-radius: 8px; 
+    padding: 10px; 
 }
 
-/* Estilo para el botón del acordeón cuando no está colapsado */
+
 .accordion-button:not(.collapsed) {
     background-color: #349eff; 
     color: #f3f3f3; 
 }
 
-/* Estilo para el cuerpo del acordeón */
 .accordion-body {
     background-color: #adcef0; 
     color: #000000; 
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px; 
     padding: 10px;
 }
 
-/* Estilo para las flechas del acordeón */
+
 .accordion-button::after {
-    color: #ffffff; /* Flechas blancas */
+    color: #ffffff; 
 }
 .card-1 {
     background-image: url('https://tbm-media.s3.amazonaws.com/og_images/IMG_6209_crop_1200.jpg');
