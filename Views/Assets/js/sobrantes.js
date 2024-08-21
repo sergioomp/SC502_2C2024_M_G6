@@ -1,55 +1,77 @@
-document.addEventListener("DOMContentLoaded", function() {
-    
+document.addEventListener('DOMContentLoaded', function() {
+    const formulario = document.querySelector('#formSobrante');
+    const idPatrocinador = formulario.querySelector('input[name="id_patrocinador"]');
+    const descripcion = formulario.querySelector('textarea[name="descripcion"]');
+    const cantidad = formulario.querySelector('input[name="cantidad"]');
+    const fechaCreacion = formulario.querySelector('input[name="fecha_creacion"]');
+    const estado = formulario.querySelector('select[name="estado"]');
 
-    fetch('.../controller/sobrantesController?op=listar_productos')
-    .then(response => response.json())
-    .then(productos => {
-        const contenedor = document.querySelector('section');
+    formulario.addEventListener('submit', function(event) {
+        event.preventDefault();
+        let valido = true;
 
-        productos.forEach(producto => {
+        limpiarErrores();
 
-                //div de producto
-            const divProducto = document.createElement('div');
-            divProducto.classList.add('producto');
+        if (idPatrocinador.value.trim() === '') {
+            mostrarError(idPatrocinador, 'El ID del patrocinador es obligatorio.');
+            valido = false;
+        }
 
+        if (descripcion.value.trim() === '') {
+            mostrarError(descripcion, 'La descripción es obligatoria.');
+            valido = false;
+        }
 
+        if (cantidad.value.trim() === '' || isNaN(cantidad.value) || cantidad.value <= 0) {
+            mostrarError(cantidad, 'La cantidad debe ser un número positivo.');
+            valido = false;
+        }
 
-            const divImgProducto = document.createElement('div');
-            divImgProducto.classList.add('imgProducto');
-            const img = document.createElement('img');
-            img.src = producto[5]; 
-            img.alt = producto[1];
-            divImgProducto.appendChild(img);
+        if (fechaCreacion.value.trim() === '') {
+            mostrarError(fechaCreacion, 'La fecha de creación es obligatoria.');
+            valido = false;
+        }
 
-            
-            const divNombreProducto = document.createElement('div');
-            divNombreProducto.classList.add('nombreProducto');
-            divNombreProducto.textContent = producto[1]; 
+        if (estado.value.trim() === '') {
+            mostrarError(estado, 'El estado es obligatorio.');
+            valido = false;
+        }
 
-            
-            const divCantidad = document.createElement('div');
-            divCantidad.classList.add('cantidad');
-            const labelCantidad = document.createElement('label');
-            labelCantidad.setAttribute('for', 'cantidad');
-            labelCantidad.textContent = 'Cantidad';
-            const inputCantidad = document.createElement('input');
-            inputCantidad.type = 'number';
-            inputCantidad.id = `cantidad-${producto[0]}`; 
-            inputCantidad.min = 0;
-            inputCantidad.max = producto[2]; 
-            divCantidad.appendChild(labelCantidad);
-            divCantidad.appendChild(inputCantidad);
+        if (valido) {
+            const formData = new FormData(formulario);
 
-            const botonAgregar = document.createElement('button');
-            botonAgregar.classList.add('boton');
-            botonAgregar.textContent = 'Agregar al carrito';
+            fetch('../controller/sobrantesController.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exito) {
+                    mostrarMensaje(data.msg, 'success');
+                } else {
+                    mostrarMensaje(data.msg, 'danger');
+                }
+            })
+            .catch(error => {
+                mostrarMensaje('Error al insertar el sobrante.', 'danger');
+            });
+        }
+    });
 
-            divProducto.appendChild(divImgProducto);
-            divProducto.appendChild(divNombreProducto);
-            divProducto.appendChild(divCantidad);
-            divProducto.appendChild(botonAgregar);
+    function mostrarError(elemento, mensaje) {
+        const error = document.createElement('div');
+        error.classList.add('error');
+        error.textContent = mensaje;
+        elemento.parentElement.appendChild(error);
+    }
 
-            contenedor.appendChild(divProducto);
-        });
-    })
-    .catch(error => console.error('Error al obtener los productos:', error));
+    function limpiarErrores() {
+        const errores = formulario.querySelectorAll('.error');
+        errores.forEach(error => error.remove());
+    }
+
+    function mostrarMensaje(mensaje, tipo) {
+        const responseDiv = document.querySelector('#response');
+        responseDiv.innerHTML = `<div class="alert alert-${tipo}">${mensaje}</div>`;
+    }
+});

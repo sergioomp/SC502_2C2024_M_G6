@@ -1,53 +1,34 @@
 <?php
 require_once '../models/sobrantesModel.php';
 
-switch ($_GET["op"]) {
-    case 'listar_productos':
-        $user_login = new ModelsSobrante();
-        $sobrantes = $user_login->listarSobrantes();
-        $data = array();
-        foreach ($sobrantes as $key) {
+class SobrantesController {
+    private $sobrante;
 
-                $data[] = array(
-                    "0" => $key->getId_patrocinador(),
-                    "1" =>$key->getDescripcion(),
-                    "2" =>$key->getCantidad(),
-                    "3" =>$key->getFecha_creacion(),
-                    "4" =>$key->getEstado(),
-                    "5" =>$key->getRutaImagen(),
-                );
+    public function __construct() {
+        $this->sobrante = new Sobrante();
+    }
 
-        }
-        echo json_encode($data);
+    public function guardar() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_patrocinador = $_POST['id_patrocinador'];
+            $descripcion = $_POST['descripcion'];
+            $cantidad = $_POST['cantidad'];
+            $fecha_creacion = $_POST['fecha_creacion'];
+            $estado = $_POST['estado'];
 
-    break;
-    
-        case 'insertar':
-            $id_restaurante = (isset($_POST["id_restaurante"])) ? $_POST["id_restaurante"] : "";
-            $descripcion = (isset($_POST["descripcion"])) ? $_POST["descripcion"] : "";
-            $cantidad = (isset($_POST["cantidad"])) ? $_POST["cantidad"] : "";
-            $fecha_creacion = (isset($_POST["fecha_creacion"])) ? $_POST["fecha_creacion"] : "";
-            $estado = (isset($_POST["estado"])) ? $_POST["estado"] : "";
+            $resultado = $this->sobrante->guardarSobrante($id_patrocinador, $descripcion, $cantidad, $fecha_creacion, $estado);
 
-            $sobrante = new ModelsSobrante();
-
-            $sobrante->setId_restaurante($id_restaurante);
-            $sobrante->setDescripcion($descripcion);
-            $sobrante->setCantidad($cantidad);
-            $sobrante->setFecha_creacion($fecha_creacion);
-            $sobrante->setEstado($estado);
-
-            try {
-                $sobrante->guardarSobrante();
-                $resp = array("exito" => true, "msg" => "Se insertó correctamente");
-                echo json_encode($resp);
-            } catch (\Throwable $th) {
-                $resp = array("exito" => false, "msg" => "Se presentó un error");
-                echo json_encode($resp);
+            if ($resultado) {
+                echo json_encode(["exito" => true, "msg" => "Se insertó correctamente"]);
+            } else {
+                echo json_encode(["exito" => false, "msg" => "Se presentó un error al guardar el sobrante"]);
             }
-
-        break;
-        
+        } else {
+            echo "Método de solicitud no permitido.";
+        }
+    }
 }
 
+$controller = new SobrantesController();
+$controller->guardar();
 ?>
