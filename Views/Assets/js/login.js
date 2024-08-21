@@ -11,7 +11,7 @@ $(document).ready(function () {
         .then(response => response.json())
         .then(data => {
             if (data.exito) {
-                window.location.href = './index.html'; // Redirige a la página de índice si la inserción fue exitosa
+                window.location.href = './index.php'; // Redirige a la página de índice si la inserción fue exitosa
             } else {
                 alert(data.msg); // Muestra un mensaje de error si la inserción falló
             }

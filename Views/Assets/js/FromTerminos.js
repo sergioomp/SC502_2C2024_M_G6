@@ -25,7 +25,7 @@ document.getElementById('acceptTerms').addEventListener('change', function() {
 });
 
 function register() {
-  window.location.href = './index.html';
+  window.location.href = './index.php';
 }
 
 

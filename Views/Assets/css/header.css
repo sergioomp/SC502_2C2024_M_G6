@@ -1,0 +1,62 @@
+.navbar {
+    background-color: #198d84;
+}
+
+.navbar:hover {
+    background-color: #198d84;
+    
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa;
+    
+}
+
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: linear-gradient(to right, #fff 0%, #fff 33%, transparent 33%, transparent 66%, #fff 66%, #fff);
+    background-size: 30px 20px;
+    height: 20px;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+    background-image: linear-gradient(to right, #fff 0%, #fff 100%);
+    background-size: 30px 20px;
+}
+
+
+.navbar-brand img,
+.navbar-nav img {
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.navbar-nav .nav-link {
+    position: relative;
+}
+
+.navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::before {
+    transform: scaleX(1);
+}

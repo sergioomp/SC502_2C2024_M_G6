@@ -1,0 +1,95 @@
+.footer {
+    background: linear-gradient(to bottom right, rgba(25, 141, 132, 0.8), rgba(105, 70, 133, 0.932)); /* Gradiente que se mantiene */
+    color: white;
+    padding: 20px 10px; 
+    position: relative;
+    overflow: hidden;
+    border-top: none; 
+    box-shadow: none; /* Elimina la sombra del borde exterior */
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer .row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.footer-section {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    border-radius: 8px; 
+    margin-bottom: 15px; 
+    transition: background 0.3s ease, transform 0.3s ease;
+    flex: 1;
+    min-width: 180px; 
+    margin: 10px;
+    box-shadow: none; /* Sombra pequeña en las esquinas internas */
+}
+
+.footer-section:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px); 
+}
+
+.footer h5 {
+    margin-bottom: 10px; 
+    font-size: 1.25rem; 
+    font-weight: 700;
+    border-bottom: 2px solid #ffffff; 
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px; 
+}
+
+.footer p {
+    font-size: 0.875rem; 
+    line-height: 1.4;
+}
+
+.footer a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-list li {
+    margin-bottom: 8px; 
+}
+
+.text-center {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.text-center p {
+    font-size: 0.875rem; 
+    margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .footer .row {
+        text-align: center;
+    }
+    .footer .footer-section {
+        margin: 10px auto;
+    }
+}
