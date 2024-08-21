@@ -22,7 +22,7 @@ class RegistroController {
             } else {
                 $resultado = $this->registro->registrarUsuario($nombre, $telefono, $direccion, $correo, $password, $ruta_imagen);
                 if ($resultado) {
-                    header("Location: ../views/inicioSesion.php"); 
+                    header("Location: ../views/login.php"); 
                     exit();
                 } else {
                     echo "Error al registrar el usuario.";

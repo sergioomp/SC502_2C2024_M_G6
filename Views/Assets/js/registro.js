@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const formulario = document.querySelector('form');
-    const idRol = formulario.querySelector('select[name="id_rol"]'); // Campo select para id_rol
     const nombre = formulario.querySelector('input[name="nombre"]');
     const telefonico = formulario.querySelector('input[name="telefonico"]');
     const direccion = formulario.querySelector('input[name="direccion"]');
@@ -12,11 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let valido = true;
 
         limpiarErrores();
-
-        if (idRol.value.trim() === '') {
-            mostrarError(idRol, 'El rol es obligatorio.');
-            valido = false;
-        }
 
         if (nombre.value.trim() === '') {
             mostrarError(nombre, 'El nombre es obligatorio.');
